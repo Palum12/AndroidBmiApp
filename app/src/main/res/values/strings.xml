@@ -1,18 +1,20 @@
 <resources>
-    <string name="app_name">BMI2</string>
+    <string name="app_name">Bmi Calculator</string>
     <string name="MKG_Unit">MKG</string>
     <string name="IBFT_Unit">IBFT</string>
     <string name="mass_label">Mass</string>
     <string name="height_label">Height</string>
     <string name="count_button_text">Count!</string>
     <string name="bmi_label">BMI: </string>
-    <string name="height_hint">Enter height(ie. 1.85m)</string>
-    <string name="mass_hint">Enter mass(ie. 80kg)</string>
-
+    <string name="heightM_hint">Enter height(ie. 1.85m)</string>
+    <string name="heightFt_hint">Enter height(ie. 6.1Ft)</string>
+    <string name="massKg_hint">Enter mass(ie. 80kg)</string>
+    <string name="massIb_hint">Enter mass(ie. 175Ib)</string>
     <string name="options_save_text">Save</string>
     <string name="options_share_text">Share</string>
     <string name="options_restore_text">Restore</string>
     <string name="options_about_text">About author</string>
 
+    <string name="title_activity_about_author">About author</string>
     <string name="about_me">Hello, Im Maks and I made this app</string>
 </resources>

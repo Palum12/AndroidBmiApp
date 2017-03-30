@@ -9,15 +9,17 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/background"
     tools:context="pl.edu.pwr.swim.paluszek.bmi2.MainActivity">
 
     <ScrollView
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="fill_parent"
+        tools:ignore="UselessParent">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <RadioGroup
                 android:id="@+id/switchUnitRG"
@@ -32,14 +34,18 @@
                     android:id="@+id/changeUnitToMKG"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
+                    android:buttonTint="@color/white"
                     android:checked="true"
-                    android:text="@string/MKG_Unit" />
+                    android:text="@string/MKG_Unit"
+                    android:textColor="@android:color/background_light" />
 
                 <RadioButton
                     android:id="@+id/changeUnitToIBFT"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/IBFT_Unit" />
+                    android:buttonTint="@color/white"
+                    android:text="@string/IBFT_Unit"
+                    android:textColor="@android:color/background_light" />
             </RadioGroup>
 
 
@@ -49,7 +55,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_below="@id/switchUnitRG"
-                android:text="@string/mass_label" />
+                android:text="@string/mass_label"
+                android:textColor="@android:color/background_light" />
 
             <EditText
                 android:id="@+id/massET"
@@ -58,16 +65,21 @@
                 android:layout_alignParentEnd="true"
                 android:layout_below="@id/switchUnitRG"
                 android:layout_toEndOf="@id/massText"
+                android:gravity="end"
+                android:hint="@string/massKg_hint"
                 android:inputType="numberDecimal"
                 android:text=""
-                android:hint="@string/mass_hint"/>
+                android:textColor="@android:color/background_light"
+                android:textSize="22sp"/>
 
             <TextView
                 android:id="@+id/heightText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/massET"
-                android:text="@string/height_label" />
+                android:layout_marginTop="40dp"
+                android:text="@string/height_label"
+                android:textColor="@android:color/background_light" />
 
 
             <EditText
@@ -75,17 +87,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/massET"
+                android:layout_marginTop="40dp"
                 android:layout_toEndOf="@id/heightText"
+                android:gravity="end"
+                android:hint="@string/heightM_hint"
                 android:inputType="numberDecimal"
                 android:text=""
-                android:hint="@string/height_hint"/>
+                android:textColor="@android:color/background_light"
+                android:textSize="22sp"/>
 
             <Button
                 android:id="@+id/countBT"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_width="160dp"
+                android:layout_height="60dp"
                 android:layout_below="@id/heightET"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="30dp"
                 android:text="@string/count_button_text" />
 
 
@@ -94,8 +110,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/countBT"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="10dp"
                 android:text="@string/bmi_label"
-                android:textAlignment="center"
+                android:textColor="@android:color/background_light"
                 android:textSize="25sp" />
 
 

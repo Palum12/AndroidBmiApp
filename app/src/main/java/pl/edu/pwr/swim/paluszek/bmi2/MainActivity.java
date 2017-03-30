@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
     RadioButton UnitIBFTRB;
 
 
-
     private boolean isMkgActive = true;
 
 
@@ -47,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @OnClick(R2.id.countBT)
-    public void countButtonClick(View v){
+    public void countButtonClick(View v) {
         IBmiCalc bmiCalc;
         float mass = 0f;
         float height = 0f;
@@ -59,8 +58,7 @@ public class MainActivity extends AppCompatActivity {
             if (UnitMkgRB.isChecked()) {
                 bmiCalc = new BmiCalcForKgM();
                 bmi = bmiCalc.countBmi(mass, height);
-            }
-            else if (UnitIBFTRB.isChecked()) {
+            } else if (UnitIBFTRB.isChecked()) {
                 bmiCalc = new BmiCalcForIbFt();
                 bmi = bmiCalc.countBmi(mass, height);
             }
@@ -76,29 +74,34 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @OnClick(R2.id.changeUnitToMKG)
-    public void countMkg(View v){
-        if (!isMkgActive && isDataEntered()){
+    public void countMkg(View v) {
+        editTextMass.setHint(R.string.massKg_hint);
+        editTextHeight.setHint(R.string.heightM_hint);
+        if (!isMkgActive && isDataEntered()) {
             float massValue = Float.valueOf(editTextMass.getText().toString());
             massValue *= 0.4536f;
             float heightValue = Float.valueOf(editTextHeight.getText().toString());
-            heightValue *= 0.3048f;
+            heightValue /= 3.28f;
             editTextMass.setText(Float.toString(massValue));
             editTextHeight.setText(Float.toString(heightValue));
-            isMkgActive = true;
+
         }
+        isMkgActive = true;
     }
 
     @OnClick(R2.id.changeUnitToIBFT)
-    public void countIbFt(View v){
-        if (isMkgActive && isDataEntered()){
+    public void countIbFt(View v) {
+        editTextMass.setHint(R.string.massIb_hint);
+        editTextHeight.setHint(R.string.heightFt_hint);
+        if (isMkgActive && isDataEntered()) {
             float massValue = Float.valueOf(editTextMass.getText().toString());
             massValue /= 0.4536f;
             float heightValue = Float.valueOf(editTextHeight.getText().toString());
             heightValue *= 3.28f;
             editTextMass.setText(Float.toString(massValue));
             editTextHeight.setText(Float.toString(heightValue));
-            isMkgActive = false;
         }
+        isMkgActive = false;
     }
 
     @Override
@@ -111,33 +114,26 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.MI_Save) {
-            Toast.makeText(getApplicationContext(), "I work", Toast.LENGTH_LONG).show();
-            if(isDataEntered()){
+            if (isDataEntered()) {
                 PreferencesManager.saveMassAndHeightInputs(this,
                         Float.valueOf(editTextMass.getText().toString()),
                         Float.valueOf(editTextHeight.getText().toString()));
                 PreferencesManager.saveRadioButtonState(this, isMkgActive);
             }
-            return true;
-        }
-        else if(id == R.id.MI_Restore){
+        } else if (id == R.id.MI_Restore) {
             PreferencesManager.loadSavedMassAndHeight(this, editTextMass, editTextHeight);
             PreferencesManager.loadRadioButtonState(this, UnitMkgRB, UnitIBFTRB);
             isMkgActive = UnitMkgRB.isChecked();
-        }
-        else if(id==R.id.MI_About){
+        } else if (id == R.id.MI_About) {
             Intent myIntent = new Intent(MainActivity.this, AboutAuthor.class);
             MainActivity.this.startActivity(myIntent);
-            return true;
-        }
-        else if(id == R.id.MI_Share){
+        } else if (id == R.id.MI_Share) {
             Intent shareIntent = new Intent();
             shareIntent.setAction(Intent.ACTION_SEND);
             shareIntent.putExtra(Intent.EXTRA_TEXT, "Moje Bmi wynosi! " +
                     resultTextView.getText().toString());
             shareIntent.setType("text/plain");
             startActivity(Intent.createChooser(shareIntent, "Choose sharing method"));
-            return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -160,14 +156,13 @@ public class MainActivity extends AppCompatActivity {
     private boolean isDataCorrect() {
         float mass = 0f;
         float height = 0f;
-        if(isDataEntered()) {
+        if (isDataEntered()) {
             height = Float.parseFloat(editTextHeight.getText().toString());
             mass = Float.parseFloat(editTextMass.getText().toString());
-        }
-        else{
+        } else {
             return false;
         }
-        if(height > 100){
+        if (height > 100) {
             height /= 100f;
             editTextHeight.setText(Float.toString(height));
         }
@@ -181,17 +176,15 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private boolean isDataEntered(){
-        try{
+    private boolean isDataEntered() {
+        try {
             Float.parseFloat(editTextHeight.getText().toString());
             Float.parseFloat(editTextMass.getText().toString());
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             return false;
         }
         return true;
     }
-
 
 
 }
